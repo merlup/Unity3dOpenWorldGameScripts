@@ -51,37 +51,56 @@ function SetEnemyType(num) {
 
  function SpawnWaves() {
      for(var i = 0; i < enemycount; i++) {
-         var spawnPosition : Vector3 = new Vector3(Random.Range(-100, 100), spawnValues.y ,Random.Range (-100, 100));
+
+     	//Set Random Spawn Position and Rotation
+         var spawnPosition : Vector3 = new Vector3(Random.Range(-50, 50), spawnValues.y ,Random.Range (-50, 50));
          var spawnRotation : Quaternion = Quaternion.identity;
 
+
+    	//Set Random EnemyType
          SetEnemyType(Random.Range(0,4));
+
+         //Check EnemyType and Instatiate Prefab for that Type
          if(EnemyType == "Light") {
-         Debug.Log(EnemyType);
-	         var newEnemy = Instantiate(lightEnemy, spawnPosition, spawnRotation);
-	         newEnemy.name = "Enemy" + enemyId++ + "(Clone)";
+         	Debug.Log(EnemyType);
+	        var newEnemy = Instantiate(lightEnemy, spawnPosition, spawnRotation);
+	        newEnemy.name = "Enemy" + enemyId++ + "(Clone)";
 	   		newEnemy.gameObject.tag = "Enemy";	
-	         enemiesarray.Push(this.lightEnemy);
+	        enemiesarray.Push(this.lightEnemy);
+
+	         // Create Blip for this Enemy
 	         blipcontroller.CreateEnemyLightBlip(newEnemy, spawnPosition, spawnRotation);
+
 	         yield WaitForSeconds(spawnWait);
+
 	      } else if (EnemyType == "Medium") {
-	         Debug.Log(EnemyType);
+	        Debug.Log(EnemyType);
 	        newEnemy = Instantiate(mediumEnemy, spawnPosition, spawnRotation);
-	         newEnemy.name = "Enemy" + enemyId++ + "(Clone)";
+	        newEnemy.name = "Enemy" + enemyId++ + "(Clone)";
 	   		newEnemy.gameObject.tag = "Enemy";	
-	         enemiesarray.Push(this.mediumEnemy);
-	         blipcontroller.CreateEnemyMediumBlip(newEnemy, spawnPosition, spawnRotation);
-	         yield WaitForSeconds(spawnWait);
+	        enemiesarray.Push(this.mediumEnemy);
+
+	        // Create Blip for this Enemy
+	        blipcontroller.CreateEnemyMediumBlip(newEnemy, spawnPosition, spawnRotation);
+
+	        yield WaitForSeconds(spawnWait);
 	      } else if (EnemyType == "Heavy") {
-	         Debug.Log(EnemyType);
-	       newEnemy = Instantiate(heavyEnemy, spawnPosition, spawnRotation);
-	         newEnemy.name = "Enemy" + enemyId++ + "(Clone)";
+	        Debug.Log(EnemyType);
+	       	newEnemy = Instantiate(heavyEnemy, spawnPosition, spawnRotation);
+	        newEnemy.name = "Enemy" + enemyId++ + "(Clone)";
 	   		newEnemy.gameObject.tag = "Enemy";	
-	         enemiesarray.Push(this.heavyEnemy);
+	        enemiesarray.Push(this.heavyEnemy);
+
+	        // Create Blip for this Enemy
 	         blipcontroller.CreateEnemyHeavyBlip(newEnemy, spawnPosition, spawnRotation);
+
 	         yield WaitForSeconds(spawnWait);
 	      }
 
+	  
      }
+
+    
  }
 
 

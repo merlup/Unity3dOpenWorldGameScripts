@@ -17,7 +17,10 @@ var map = GetComponent('Minimap');
 function CreateEnemyLightBlip(enemy, position , rotation) {
  var newBlip = Instantiate(EnemyLightBlipImage, position, rotation);
  newBlip.name = "Enemy" + blipCount++;
+
+ //Setting this Blips parent to the MiniMap GameObject
  newBlip.transform.SetParent(map.transform);
+
  newBlip.gameObject.tag = "EnemyBlip" ;
  var trackObject = enemy;
  trackObjects.Push(trackObject.transform);
@@ -26,7 +29,10 @@ function CreateEnemyLightBlip(enemy, position , rotation) {
 function CreateEnemyMediumBlip(enemy, position , rotation) {
  var newBlip = Instantiate(EnemyMediumBlipImage, position, rotation);
  newBlip.name = "Enemy" + blipCount++;
+
+  //Setting this Blips parent to the MiniMap GameObject
  newBlip.transform.SetParent(map.transform);
+
  newBlip.gameObject.tag = "EnemyBlip" ;
  var trackObject = enemy;
  trackObjects.Push(trackObject.transform);
@@ -35,7 +41,10 @@ function CreateEnemyMediumBlip(enemy, position , rotation) {
 function CreateEnemyHeavyBlip(enemy, position , rotation) {
  var newBlip = Instantiate(EnemyHeavyBlipImage, position, rotation);
  newBlip.name = "Enemy" + blipCount++;
+
+  //Setting this Blips parent to the MiniMap GameObject
  newBlip.transform.SetParent(map.transform);
+
  newBlip.gameObject.tag = "EnemyBlip" ;
  var trackObject = enemy;
  trackObjects.Push(trackObject.transform);
