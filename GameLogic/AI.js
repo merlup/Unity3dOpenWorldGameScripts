@@ -50,7 +50,7 @@ function Update () {
 
 function Patrol() {
 	chase = false;
-	while(chase == false) {
+	if(chase == false) {
 		agent.SetDestination(Vector3.MoveTowards(transform.position, patrolPoints[currentPoint].position, movespeed * Time.deltaTime));
 		character.Move(agent.desiredVelocity, false, false);
 		Debug.Log(chase);
