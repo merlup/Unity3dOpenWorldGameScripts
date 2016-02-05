@@ -5,15 +5,43 @@ public var distanceUp : float = 0;
 public var smooth : float = 0;
 public var follow : Transform;
 private var targetPosition : Vector3 =  Vector3.zero;
+public var CurrentCam : float;
+public var Cameras : Vector2[];
+public var Camera1 : Vector2 = new Vector2(2, 2);
+public var Camera2 : Vector2 = new Vector2(4, 4);
+//public var Camera3 : Vector2 = new Vector2 ( distanceAway, distanceUp);
+//public var Camera4 : Vector2 = new Vector2 ( distanceAway, distanceUp);
+//public var Camera5 : Vector2 = new Vector2 ( distanceAway, distanceUp);
+
 
 function Start () {
+	CurrentCam = 0;
 	transform.LookAt(follow);
-	follow = GameObject.FindWithTag("Player").transform;
+	follow = GameObject.Find("CameraTarget").transform;
+	Cameras[0] = Camera1;
+	Cameras[1] = Camera2;
+	Debug.Log(Cameras[0]);
+	Debug.Log(Cameras[1]);
+	var distanceAway = Cameras[CurrentCam].x;
+	var distanceUp = Cameras[CurrentCam].y;
+	Debug.Log(Cameras);
 
 }
 
 function Update () {
-	
+	if(Input.GetButton("CameraSwitch")) {
+
+
+	CurrentCam++;
+
+
+		if(CurrentCam >= 2) {
+			Debug.Log("Last Cam");
+			CurrentCam = 0; 
+		}
+
+	Debug.Log("Camera Switch");
+	}
 //	if(Input.GetButton("Sprint")) {
 //	
 //		distanceAway = 4;
