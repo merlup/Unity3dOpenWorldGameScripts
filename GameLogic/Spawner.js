@@ -13,6 +13,9 @@ public var spawnWait : float = 5;
 public var startWait : float = 2;
 public var waveWait : float = 4;
 public var tagId : float = 0;
+public var Spawn = true;
+public var WaveCount : float;
+public var NumberOfWaves : float;
 
 var spawnPosition : Vector3;
 var spawnRotation : Quaternion;
@@ -20,26 +23,44 @@ var spawnRotation : Quaternion;
 
 function Start () {
 var blipcontroller = GetComponent("BlipCtrl");
-	while(true) {
+WaveCount = 0;
+
+	while(Spawn == true) {
 		yield WaitForSeconds(startWait);
 		SpawnWaves();
 		yield WaitForSeconds(waveWait);
+
 	}
-	
+
+
+
+}
+
+function Update () {
+
+		if(WaveCount == NumberOfWaves) {
+		Spawn = false;
+		Debug.Log("Reseting Wave Count");
+		WaveCount = 0;
+	}
+
+
 }
 
 
-function SetEnemyType(num) {
 
-	if(num == 1 ) {
+
+function SetEnemyType(x) {
+
+	if(x == 1 ) {
 
 		EnemyType = "Light";
 
-	} else if(num == 2) {
+	} else if(x == 2) {
 
 		EnemyType = "Medium";
 
-	} else if (num == 3) {
+	} else if (x == 3) {
 
 		EnemyType = "Heavy";
 
@@ -49,7 +70,12 @@ function SetEnemyType(num) {
 }
 
 
+
+
  function SpawnWaves() {
+ 	WaveCount++;
+ 	Debug.Log("Wave #" + WaveCount);
+
      for(var i = 0; i < enemycount; i++) {
 
      	//Set Random Spawn Position and Rotation

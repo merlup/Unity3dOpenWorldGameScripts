@@ -19,7 +19,7 @@ agent = GetComponent(NavMeshAgent);
 character = GetComponent(UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter);
 agent.updateRotation = false;
 agent.updatePosition = true;
-currentPoint = Random.Range(0,5);
+currentPoint = Random.Range(0,4);
 Patrol();
 
 
@@ -50,10 +50,11 @@ function Update () {
 
 function Patrol() {
 	chase = false;
-	if(chase == false) {
+	while(chase == false) {
 		agent.SetDestination(Vector3.MoveTowards(transform.position, patrolPoints[currentPoint].position, movespeed * Time.deltaTime));
 		character.Move(agent.desiredVelocity, false, false);
 		Debug.Log(chase);
+		break;
 	}
 	if(transform.position.x == patrolPoints[currentPoint].position.x && transform.position.z == patrolPoints[currentPoint].position.z ) {
 		currentPoint++;
@@ -66,7 +67,8 @@ function Patrol() {
 }
 
 function ChasePlayer () {
-	
+	chase = false;
+	chase = true;
 	agent.SetDestination(target.position);
 	character.Move(agent.desiredVelocity, false, false);
 }
